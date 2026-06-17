@@ -1,0 +1,427 @@
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Page ── */
+body {
+  font-family: system-ui, sans-serif;
+  background: #fdf4ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* ── Canvas (confetti) ── */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* ── Main scene ── */
+#scene {
+  min-height: 580px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+/* ── Cake wrapper ── */
+#cake-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.8s, transform 0.8s;
+}
+
+/* ── Candles row ── */
+.candle-group {
+  display: flex;
+  gap: 18px;
+  align-items: flex-end;
+}
+
+.candle-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Flame ── */
+.flame-wrap {
+  position: relative;
+  width: 20px;
+  height: 42px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: -2px;
+}
+
+.fl {
+  position: absolute;
+  border-radius: 50% 50% 20% 20%;
+  transform-origin: center bottom;
+  animation: flicker 0.16s infinite alternate;
+}
+
+.fo {
+  width: 16px;
+  height: 32px;
+  background: #ff9800;
+  bottom: 0;
+  left: 2px;
+  opacity: 0.95;
+  animation-duration: 0.18s;
+}
+
+.fm {
+  width: 10px;
+  height: 22px;
+  background: #ffeb3b;
+  bottom: 0;
+  left: 5px;
+  animation-duration: 0.13s;
+}
+
+.fi {
+  width: 6px;
+  height: 13px;
+  background: #fff9c4;
+  bottom: 0;
+  left: 7px;
+  animation-duration: 0.1s;
+}
+
+@keyframes flicker {
+  0%   { transform: scaleX(1)    skewX(0deg); }
+  50%  { transform: scaleX(0.82) skewX(-5deg); }
+  100% { transform: scaleX(1.12) skewX(3deg); }
+}
+
+/* ── Flame glow ── */
+.cglow {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 200, 50, 0.55) 0%, transparent 70%);
+  top: -10px;
+  left: -10px;
+  animation: glowPulse 0.28s infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes glowPulse {
+  from { opacity: 0.65; }
+  to   { opacity: 1; }
+}
+
+/* ── Wick ── */
+.cwick {
+  width: 2px;
+  height: 8px;
+  background: #4a3728;
+  border-radius: 1px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Candle bodies ── */
+.cbody {
+  width: 14px;
+  height: 48px;
+  border-radius: 3px 3px 2px 2px;
+}
+
+.c1 { background: #f472b6; }
+.c2 { background: #60a5fa; }
+.c3 { background: #34d399; }
+
+/* ── Smoke ── */
+.smoke-wrap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.smoke-puff {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(180, 180, 180, 0.4);
+  animation: smokeUp 1.3s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes smokeUp {
+  0%   { transform: translateY(0) scale(0.4); opacity: 0.7; }
+  100% { transform: translateY(-60px) scale(1.5); opacity: 0; }
+}
+
+/* ── Top cake tier ── */
+#tier-top {
+  width: 140px;
+  height: 50px;
+  background: #fce7f3;
+  border-radius: 8px 8px 0 0;
+  border: 2px solid #f9a8d4;
+  position: relative;
+  margin-top: 4px;
+}
+
+#tier-top-frosting {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 16px;
+  background: #fbcfe8;
+  border-radius: 6px;
+}
+
+#tier-top-frosting::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: #fce7f3;
+}
+
+.drip {
+  position: absolute;
+  top: 6px;
+  width: 10px;
+  height: 18px;
+  background: #fbcfe8;
+  border-radius: 0 0 6px 6px;
+}
+
+/* ── Bottom cake tier ── */
+#tier-bottom {
+  width: 200px;
+  height: 70px;
+  background: #fef3c7;
+  border-radius: 6px 6px 4px 4px;
+  border: 2px solid #fcd34d;
+  position: relative;
+}
+
+#tier-bottom-frosting {
+  position: absolute;
+  top: -12px;
+  left: 0;
+  width: 100%;
+  height: 18px;
+  background: #fde68a;
+  border-radius: 6px;
+}
+
+#tier-bottom-frosting::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: #fef3c7;
+}
+
+.drip2 {
+  position: absolute;
+  top: 6px;
+  width: 12px;
+  height: 22px;
+  background: #fde68a;
+  border-radius: 0 0 6px 6px;
+}
+
+/* ── Sprinkle dots ── */
+.dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* ── Cake plate ── */
+#plate {
+  width: 230px;
+  height: 14px;
+  background: #e5e7eb;
+  border-radius: 7px;
+  margin-top: 3px;
+}
+
+/* ── Hint text ── */
+#hint {
+  margin-top: 24px;
+  font-size: 15px;
+  color: #555;
+  text-align: center;
+  line-height: 1.6;
+}
+
+#hint strong {
+  color: #111;
+  font-weight: 600;
+}
+
+/* ── Mic button ── */
+#mic-btn {
+  margin-top: 16px;
+  padding: 10px 26px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.15s;
+}
+
+#mic-btn:hover {
+  background: #f3f4f6;
+}
+
+#mic-btn.listening {
+  border-color: #e24b4a;
+  color: #e24b4a;
+  animation: pulsebtn 0.8s infinite alternate;
+}
+
+@keyframes pulsebtn {
+  from { box-shadow: none; }
+  to   { box-shadow: 0 0 0 3px rgba(226, 75, 74, 0.15); }
+}
+
+/* ── Breath level bar ── */
+#level-bar-wrap {
+  margin-top: 12px;
+  width: 200px;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+#level-bar {
+  height: 100%;
+  width: 0%;
+  background: #e24b4a;
+  border-radius: 3px;
+  transition: width 0.08s;
+}
+
+/* ── Simulate blow controls ── */
+#sim-wrap {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #666;
+}
+
+#sim-wrap input[type="range"] {
+  width: 120px;
+}
+
+#sim-blow {
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  cursor: pointer;
+}
+
+#sim-blow:hover {
+  background: #f3f4f6;
+}
+
+/* ── Reveal section ── */
+#reveal {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  animation: fadeIn 0.8s ease;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.reveal-emoji {
+  font-size: 52px;
+  margin-bottom: 12px;
+}
+
+#reveal h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+#reveal p {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+#visit-btn {
+  padding: 12px 32px;
+  background: #3b82f6;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity 0.15s;
+}
+
+#visit-btn:hover {
+  opacity: 0.85;
+}
+
+#reset-btn {
+  margin-top: 14px;
+  font-size: 13px;
+  color: #888;
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-decoration: underline;
+}
+
+#revealContent,
+.reveal {
+  display: none;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Cake - Blow Out the Candles!</title>
+  <link rel="stylesheet" href="style-cake.css">
+</head>
+<body>
+
+  <canvas id="confetti-canvas"></canvas>
+
+  <div id="scene">
+    <div id="cake-wrap">
+
+      <div class="candle-group">
+        <div class="candle-unit">
+          <div class="flame-wrap" id="fw0">
+            <div class="cglow"></div>
+            <div class="fl fo"></div><div class="fl fm"></div><div class="fl fi"></div>
+            <div class="smoke-wrap"></div>
+          </div>
+          <div class="cwick"></div>
+          <div class="cbody c1"></div>
+        </div>
+        <div class="candle-unit">
+          <div class="flame-wrap" id="fw1">
+            <div class="cglow"></div>
+            <div class="fl fo"></div><div class="fl fm"></div><div class="fl fi"></div>
+            <div class="smoke-wrap"></div>
+          </div>
+          <div class="cwick"></div>
+          <div class="cbody c2"></div>
+        </div>
+        <div class="candle-unit">
+          <div class="flame-wrap" id="fw2">
+            <div class="cglow"></div>
+            <div class="fl fo"></div><div class="fl fm"></div><div class="fl fi"></div>
+            <div class="smoke-wrap"></div>
+          </div>
+          <div class="cwick"></div>
+          <div class="cbody c3"></div>
+        </div>
+      </div>
+
+      <div id="tier-top">
+        <div id="tier-top-frosting"></div>
+        <div class="drip" style="left:12px"></div>
+        <div class="drip" style="left:38px"></div>
+        <div class="drip" style="left:68px"></div>
+        <div class="drip" style="left:98px"></div>
+        <div class="drip" style="left:118px"></div>
+        <div class="dot" style="background:#f472b6;top:18px;left:20px"></div>
+        <div class="dot" style="background:#60a5fa;top:18px;left:40px"></div>
+        <div class="dot" style="background:#34d399;top:18px;left:60px"></div>
+        <div class="dot" style="background:#fb923c;top:18px;left:80px"></div>
+        <div class="dot" style="background:#a78bfa;top:18px;left:100px"></div>
+        <div class="dot" style="background:#f472b6;top:32px;left:30px"></div>
+        <div class="dot" style="background:#34d399;top:32px;left:55px"></div>
+        <div class="dot" style="background:#60a5fa;top:32px;left:90px"></div>
+      </div>
+
+      <div id="tier-bottom">
+        <div id="tier-bottom-frosting"></div>
+        <div class="drip2" style="left:10px"></div>
+        <div class="drip2" style="left:38px"></div>
+        <div class="drip2" style="left:70px"></div>
+        <div class="drip2" style="left:102px"></div>
+        <div class="drip2" style="left:134px"></div>
+        <div class="drip2" style="left:166px"></div>
+        <div class="dot" style="width:10px;height:10px;background:#f472b6;top:22px;left:20px"></div>
+        <div class="dot" style="width:10px;height:10px;background:#60a5fa;top:22px;left:50px"></div>
+        <div class="dot" style="width:10px;height:10px;background:#34d399;top:22px;left:80px"></div>
+        <div class="dot" style="width:10px;height:10px;background:#fb923c;top:22px;left:110px"></div>
+        <div class="dot" style="width:10px;height:10px;background:#a78bfa;top:22px;left:140px"></div>
+        <div class="dot" style="width:10px;height:10px;background:#f472b6;top:40px;left:35px"></div>
+        <div class="dot" style="width:10px;height:10px;background:#34d399;top:40px;left:70px"></div>
+        <div class="dot" style="width:10px;height:10px;background:#60a5fa;top:40px;left:105px"></div>
+        <div class="dot" style="width:10px;height:10px;background:#fb923c;top:40px;left:155px"></div>
+      </div>
+
+      <div id="plate"></div>
+    </div>
+
+    <div id="hint"><strong>Make a wish!</strong><br>Click below and blow into your mic, or use the slider.</div>
+
+    <button id="mic-btn">
+      🎤 Hold to blow
+    </button>
+    <div id="level-bar-wrap"><div id="level-bar"></div></div>
+
+    <div id="sim-wrap">
+      <span>No mic?</span>
+      <input id="sim-slider" type="range" min="0" max="100" value="0" step="1">
+      <button id="sim-blow">Blow!</button>
+    </div>
+
+    <div id="revealContent" class="reveal">
+      <button id="startBtn">Start Celebration 🎂</button>
+    </div>
+  </div>
+  <script>
+  document.getElementById('startBtn').addEventListener('click', function() {
+    window.location.href = 'reveal.html';
+  });
+</script>
+  <script src="script.js"></script>
+</body>
+</html>
